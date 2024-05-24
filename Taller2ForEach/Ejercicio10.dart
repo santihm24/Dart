@@ -49,13 +49,13 @@ void agregarCliente(Map<String, Map<String, dynamic>> baseDatos) {
   print('\nAñadir cliente:');
   var cliente = <String, dynamic>{};
 
-  print('NIF del cliente: ');
-  var nif = stdin.readLineSync()!;
-  if (baseDatos.containsKey(nif)) {
+  print('ID del cliente: ');
+  var id = stdin.readLineSync()!;
+  if (baseDatos.containsKey(id)) {
     print('El cliente ya existe en la base de datos.');
     return;
   }
-  cliente['NIF'] = nif;
+  cliente['ID'] = id;
 
   print('Nombre: ');
   cliente['nombre'] = stdin.readLineSync();
@@ -73,7 +73,7 @@ void agregarCliente(Map<String, Map<String, dynamic>> baseDatos) {
   var respuesta = stdin.readLineSync()!.toLowerCase();
   cliente['preferente'] = respuesta == 's';
 
-  baseDatos[nif] = cliente;
+  baseDatos[id] = cliente;
   print('Cliente añadido correctamente.');
 }
 
@@ -81,9 +81,9 @@ void agregarCliente(Map<String, Map<String, dynamic>> baseDatos) {
 void eliminarCliente(Map<String, Map<String, dynamic>> baseDatos) {
   print('\nEliminar cliente:');
   print('NIF del cliente a eliminar: ');
-  var nif = stdin.readLineSync()!;
-  if (baseDatos.containsKey(nif)) {
-    baseDatos.remove(nif);
+  var id = stdin.readLineSync()!;
+  if (baseDatos.containsKey(id)) {
+    baseDatos.remove(id);
     print('Cliente eliminado correctamente.');
   } else {
     print('El cliente no existe en la base de datos.');
@@ -93,12 +93,12 @@ void eliminarCliente(Map<String, Map<String, dynamic>> baseDatos) {
 
 void mostrarCliente(Map<String, Map<String, dynamic>> baseDatos) {
   print('\nMostrar cliente:');
-  print('NIF del cliente: ');
-  var nif = stdin.readLineSync()!;
-  if (baseDatos.containsKey(nif)) {
-    var cliente = baseDatos[nif]!;
+  print('ID del cliente: ');
+  var id = stdin.readLineSync()!;
+  if (baseDatos.containsKey(id)) {
+    var cliente = baseDatos[id]!;
     print('Datos del cliente:');
-    print('NIF: ${cliente['NIF']}');
+    print('ID: ${cliente['ID']}');
     print('Nombre: ${cliente['nombre']}');
     print('Dirección: ${cliente['direccion']}');
     print('Teléfono: ${cliente['telefono']}');
@@ -127,7 +127,7 @@ void listarClientesPreferentes(Map<String, Map<String, dynamic>> baseDatos) {
     print('No hay clientes preferentes en la base de datos.');
   } else {
     preferentes.forEach((cliente) {
-      print('NIF: ${cliente['NIF']} - Nombre: ${cliente['nombre']}');
+      print('ID: ${cliente['ID']} - Nombre: ${cliente['nombre']}');
     });
   }
 }
